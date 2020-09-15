@@ -1,8 +1,12 @@
+package main
+
 import (
-	"github.com/casedelst/godotxt/cmd"
+	"fmt"
+
+	"github.com/CaseDelst/godo-txt"
 )
 
 func main() {
 	cmd.Execute()
+	fmt.Printf("eff")
 }
-
