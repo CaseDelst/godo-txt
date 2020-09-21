@@ -1,10 +1,6 @@
 package cmd
 
 import (
-	"fmt"
-	"os"
-
-	homedir "github.com/mitchellh/go-homedir"
 	"github.com/spf13/viper"
 )
 
@@ -14,17 +10,22 @@ type config struct {
 }
 
 var configFile map[string]config
+var filePath string
 var configFileName string
+var currentConfig *string
 var configViper *viper.Viper
 
 // initConfig reads in config file and ENV variables if set.
 func initConfig() {
-	if cfgFile != "" {
+	filePath = "C:\\Users\\admin\\Google Drive\\todo.txt"
+
+	/* if cfgFile != "" {
 		// Use config file from the flag.
 		viper.SetConfigFile(cfgFile)
 	} else {
 		// Find home directory.
 		home, err := homedir.Dir()
+		fmt.Printf("homedir:%s", home)
 		if err != nil {
 			er(err)
 		}
@@ -39,10 +40,10 @@ func initConfig() {
 	if err := viper.ReadInConfig(); err == nil {
 		fmt.Println("Using config file:", viper.ConfigFileUsed())
 	}
-	fmt.Println("Using config file:", viper.ConfigFileUsed())
+	fmt.Println("Using config file:", viper.ConfigFileUsed()) */
 }
 
-func reloadConfigFile() {
+/* func reloadConfigFile() {
 	if err := configViper.ReadInConfig(); err != nil {
 		configFileExpected := configFileName != ""
 		_, errIsNotFound := err.(viper.ConfigFileNotFoundError)
@@ -58,4 +59,47 @@ func reloadConfigFile() {
 		fmt.Fprintf(os.Stderr, "Unable to parse config file: %s", err)
 		os.Exit(1)
 	}
+} */
+
+/* func addConfigCommands(rootCmd *cobra.Command) {
+	root := &cobra.Command{
+		Use:     "configs",
+		Short:   "update configurations",
+		Aliases: []string{"cfg"},
+		RunE: func(cmd *cobra.Command, args []string) error {
+			config, err := listConfigs()
+			if err != nil {
+				return err
+			}
+			fmt.Println("--Current Config(s):--")
+			for i, c := range config {
+				fmt.Printf("%v:\nFilePath: %s\n", i, c.FilePath)
+			}
+			return nil
+		},
+	}
+
+	rootCmd.AddCommand(root)
+} */
+
+/* func setConfig(name string, config config) {
+	currentConfig = &name
 }
+
+func listConfigs() (map[string]config, error) {
+	return configFile, nil
+}
+
+func listConfigKeys() ([]string, error) {
+	configs, err := listConfigs()
+	if err != nil {
+		return nil, err
+	}
+	keys := make([]string, 0, len(configs))
+	for c := range configs {
+		keys = append(keys, c)
+	}
+
+	return keys, nil
+}
+*/
